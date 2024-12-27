@@ -18,39 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
-    required TResult Function() selcetedCategories,
+    required TResult Function() categoriesFetch,
+    required TResult Function() categoriesSelected,
+    required TResult Function(CategoryModel category) categoriesClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
-    TResult? Function()? selcetedCategories,
+    TResult? Function()? categoriesFetch,
+    TResult? Function()? categoriesSelected,
+    TResult? Function(CategoryModel category)? categoriesClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
-    TResult Function()? selcetedCategories,
+    TResult Function()? categoriesFetch,
+    TResult Function()? categoriesSelected,
+    TResult Function(CategoryModel category)? categoriesClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(fetchCategories value) fetchCategories,
-    required TResult Function(selcetedCategories value) selcetedCategories,
+    required TResult Function(categoriesFetch value) categoriesFetch,
+    required TResult Function(categoriesSelected value) categoriesSelected,
+    required TResult Function(categoriesClicked value) categoriesClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(fetchCategories value)? fetchCategories,
-    TResult? Function(selcetedCategories value)? selcetedCategories,
+    TResult? Function(categoriesFetch value)? categoriesFetch,
+    TResult? Function(categoriesSelected value)? categoriesSelected,
+    TResult? Function(categoriesClicked value)? categoriesClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(fetchCategories value)? fetchCategories,
-    TResult Function(selcetedCategories value)? selcetedCategories,
+    TResult Function(categoriesFetch value)? categoriesFetch,
+    TResult Function(categoriesSelected value)? categoriesSelected,
+    TResult Function(categoriesClicked value)? categoriesClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,18 +84,18 @@ class _$CategoryEventCopyWithImpl<$Res, $Val extends CategoryEvent>
 }
 
 /// @nodoc
-abstract class _$$fetchCategoriesImplCopyWith<$Res> {
-  factory _$$fetchCategoriesImplCopyWith(_$fetchCategoriesImpl value,
-          $Res Function(_$fetchCategoriesImpl) then) =
-      __$$fetchCategoriesImplCopyWithImpl<$Res>;
+abstract class _$$categoriesFetchImplCopyWith<$Res> {
+  factory _$$categoriesFetchImplCopyWith(_$categoriesFetchImpl value,
+          $Res Function(_$categoriesFetchImpl) then) =
+      __$$categoriesFetchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$fetchCategoriesImplCopyWithImpl<$Res>
-    extends _$CategoryEventCopyWithImpl<$Res, _$fetchCategoriesImpl>
-    implements _$$fetchCategoriesImplCopyWith<$Res> {
-  __$$fetchCategoriesImplCopyWithImpl(
-      _$fetchCategoriesImpl _value, $Res Function(_$fetchCategoriesImpl) _then)
+class __$$categoriesFetchImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$categoriesFetchImpl>
+    implements _$$categoriesFetchImplCopyWith<$Res> {
+  __$$categoriesFetchImplCopyWithImpl(
+      _$categoriesFetchImpl _value, $Res Function(_$categoriesFetchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CategoryEvent
@@ -98,27 +104,27 @@ class __$$fetchCategoriesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$fetchCategoriesImpl
+class _$categoriesFetchImpl
     with DiagnosticableTreeMixin
-    implements fetchCategories {
-  const _$fetchCategoriesImpl();
+    implements categoriesFetch {
+  const _$categoriesFetchImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryEvent.fetchCategories()';
+    return 'CategoryEvent.categoriesFetch()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'CategoryEvent.fetchCategories'));
+        .add(DiagnosticsProperty('type', 'CategoryEvent.categoriesFetch'));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$fetchCategoriesImpl);
+        (other.runtimeType == runtimeType && other is _$categoriesFetchImpl);
   }
 
   @override
@@ -127,30 +133,33 @@ class _$fetchCategoriesImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
-    required TResult Function() selcetedCategories,
+    required TResult Function() categoriesFetch,
+    required TResult Function() categoriesSelected,
+    required TResult Function(CategoryModel category) categoriesClicked,
   }) {
-    return fetchCategories();
+    return categoriesFetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
-    TResult? Function()? selcetedCategories,
+    TResult? Function()? categoriesFetch,
+    TResult? Function()? categoriesSelected,
+    TResult? Function(CategoryModel category)? categoriesClicked,
   }) {
-    return fetchCategories?.call();
+    return categoriesFetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
-    TResult Function()? selcetedCategories,
+    TResult Function()? categoriesFetch,
+    TResult Function()? categoriesSelected,
+    TResult Function(CategoryModel category)? categoriesClicked,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories();
+    if (categoriesFetch != null) {
+      return categoriesFetch();
     }
     return orElse();
   }
@@ -158,52 +167,55 @@ class _$fetchCategoriesImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(fetchCategories value) fetchCategories,
-    required TResult Function(selcetedCategories value) selcetedCategories,
+    required TResult Function(categoriesFetch value) categoriesFetch,
+    required TResult Function(categoriesSelected value) categoriesSelected,
+    required TResult Function(categoriesClicked value) categoriesClicked,
   }) {
-    return fetchCategories(this);
+    return categoriesFetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(fetchCategories value)? fetchCategories,
-    TResult? Function(selcetedCategories value)? selcetedCategories,
+    TResult? Function(categoriesFetch value)? categoriesFetch,
+    TResult? Function(categoriesSelected value)? categoriesSelected,
+    TResult? Function(categoriesClicked value)? categoriesClicked,
   }) {
-    return fetchCategories?.call(this);
+    return categoriesFetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(fetchCategories value)? fetchCategories,
-    TResult Function(selcetedCategories value)? selcetedCategories,
+    TResult Function(categoriesFetch value)? categoriesFetch,
+    TResult Function(categoriesSelected value)? categoriesSelected,
+    TResult Function(categoriesClicked value)? categoriesClicked,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories(this);
+    if (categoriesFetch != null) {
+      return categoriesFetch(this);
     }
     return orElse();
   }
 }
 
-abstract class fetchCategories implements CategoryEvent {
-  const factory fetchCategories() = _$fetchCategoriesImpl;
+abstract class categoriesFetch implements CategoryEvent {
+  const factory categoriesFetch() = _$categoriesFetchImpl;
 }
 
 /// @nodoc
-abstract class _$$selcetedCategoriesImplCopyWith<$Res> {
-  factory _$$selcetedCategoriesImplCopyWith(_$selcetedCategoriesImpl value,
-          $Res Function(_$selcetedCategoriesImpl) then) =
-      __$$selcetedCategoriesImplCopyWithImpl<$Res>;
+abstract class _$$categoriesSelectedImplCopyWith<$Res> {
+  factory _$$categoriesSelectedImplCopyWith(_$categoriesSelectedImpl value,
+          $Res Function(_$categoriesSelectedImpl) then) =
+      __$$categoriesSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$selcetedCategoriesImplCopyWithImpl<$Res>
-    extends _$CategoryEventCopyWithImpl<$Res, _$selcetedCategoriesImpl>
-    implements _$$selcetedCategoriesImplCopyWith<$Res> {
-  __$$selcetedCategoriesImplCopyWithImpl(_$selcetedCategoriesImpl _value,
-      $Res Function(_$selcetedCategoriesImpl) _then)
+class __$$categoriesSelectedImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$categoriesSelectedImpl>
+    implements _$$categoriesSelectedImplCopyWith<$Res> {
+  __$$categoriesSelectedImplCopyWithImpl(_$categoriesSelectedImpl _value,
+      $Res Function(_$categoriesSelectedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CategoryEvent
@@ -212,27 +224,27 @@ class __$$selcetedCategoriesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$selcetedCategoriesImpl
+class _$categoriesSelectedImpl
     with DiagnosticableTreeMixin
-    implements selcetedCategories {
-  const _$selcetedCategoriesImpl();
+    implements categoriesSelected {
+  const _$categoriesSelectedImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryEvent.selcetedCategories()';
+    return 'CategoryEvent.categoriesSelected()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'CategoryEvent.selcetedCategories'));
+        .add(DiagnosticsProperty('type', 'CategoryEvent.categoriesSelected'));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$selcetedCategoriesImpl);
+        (other.runtimeType == runtimeType && other is _$categoriesSelectedImpl);
   }
 
   @override
@@ -241,30 +253,33 @@ class _$selcetedCategoriesImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
-    required TResult Function() selcetedCategories,
+    required TResult Function() categoriesFetch,
+    required TResult Function() categoriesSelected,
+    required TResult Function(CategoryModel category) categoriesClicked,
   }) {
-    return selcetedCategories();
+    return categoriesSelected();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
-    TResult? Function()? selcetedCategories,
+    TResult? Function()? categoriesFetch,
+    TResult? Function()? categoriesSelected,
+    TResult? Function(CategoryModel category)? categoriesClicked,
   }) {
-    return selcetedCategories?.call();
+    return categoriesSelected?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
-    TResult Function()? selcetedCategories,
+    TResult Function()? categoriesFetch,
+    TResult Function()? categoriesSelected,
+    TResult Function(CategoryModel category)? categoriesClicked,
     required TResult orElse(),
   }) {
-    if (selcetedCategories != null) {
-      return selcetedCategories();
+    if (categoriesSelected != null) {
+      return categoriesSelected();
     }
     return orElse();
   }
@@ -272,37 +287,211 @@ class _$selcetedCategoriesImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(fetchCategories value) fetchCategories,
-    required TResult Function(selcetedCategories value) selcetedCategories,
+    required TResult Function(categoriesFetch value) categoriesFetch,
+    required TResult Function(categoriesSelected value) categoriesSelected,
+    required TResult Function(categoriesClicked value) categoriesClicked,
   }) {
-    return selcetedCategories(this);
+    return categoriesSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(fetchCategories value)? fetchCategories,
-    TResult? Function(selcetedCategories value)? selcetedCategories,
+    TResult? Function(categoriesFetch value)? categoriesFetch,
+    TResult? Function(categoriesSelected value)? categoriesSelected,
+    TResult? Function(categoriesClicked value)? categoriesClicked,
   }) {
-    return selcetedCategories?.call(this);
+    return categoriesSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(fetchCategories value)? fetchCategories,
-    TResult Function(selcetedCategories value)? selcetedCategories,
+    TResult Function(categoriesFetch value)? categoriesFetch,
+    TResult Function(categoriesSelected value)? categoriesSelected,
+    TResult Function(categoriesClicked value)? categoriesClicked,
     required TResult orElse(),
   }) {
-    if (selcetedCategories != null) {
-      return selcetedCategories(this);
+    if (categoriesSelected != null) {
+      return categoriesSelected(this);
     }
     return orElse();
   }
 }
 
-abstract class selcetedCategories implements CategoryEvent {
-  const factory selcetedCategories() = _$selcetedCategoriesImpl;
+abstract class categoriesSelected implements CategoryEvent {
+  const factory categoriesSelected() = _$categoriesSelectedImpl;
+}
+
+/// @nodoc
+abstract class _$$categoriesClickedImplCopyWith<$Res> {
+  factory _$$categoriesClickedImplCopyWith(_$categoriesClickedImpl value,
+          $Res Function(_$categoriesClickedImpl) then) =
+      __$$categoriesClickedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CategoryModel category});
+
+  $CategoryModelCopyWith<$Res> get category;
+}
+
+/// @nodoc
+class __$$categoriesClickedImplCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$categoriesClickedImpl>
+    implements _$$categoriesClickedImplCopyWith<$Res> {
+  __$$categoriesClickedImplCopyWithImpl(_$categoriesClickedImpl _value,
+      $Res Function(_$categoriesClickedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$categoriesClickedImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryModel,
+    ));
+  }
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryModelCopyWith<$Res> get category {
+    return $CategoryModelCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$categoriesClickedImpl
+    with DiagnosticableTreeMixin
+    implements categoriesClicked {
+  const _$categoriesClickedImpl({required this.category});
+
+  @override
+  final CategoryModel category;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CategoryEvent.categoriesClicked(category: $category)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CategoryEvent.categoriesClicked'))
+      ..add(DiagnosticsProperty('category', category));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$categoriesClickedImpl &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$categoriesClickedImplCopyWith<_$categoriesClickedImpl> get copyWith =>
+      __$$categoriesClickedImplCopyWithImpl<_$categoriesClickedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() categoriesFetch,
+    required TResult Function() categoriesSelected,
+    required TResult Function(CategoryModel category) categoriesClicked,
+  }) {
+    return categoriesClicked(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? categoriesFetch,
+    TResult? Function()? categoriesSelected,
+    TResult? Function(CategoryModel category)? categoriesClicked,
+  }) {
+    return categoriesClicked?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? categoriesFetch,
+    TResult Function()? categoriesSelected,
+    TResult Function(CategoryModel category)? categoriesClicked,
+    required TResult orElse(),
+  }) {
+    if (categoriesClicked != null) {
+      return categoriesClicked(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(categoriesFetch value) categoriesFetch,
+    required TResult Function(categoriesSelected value) categoriesSelected,
+    required TResult Function(categoriesClicked value) categoriesClicked,
+  }) {
+    return categoriesClicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(categoriesFetch value)? categoriesFetch,
+    TResult? Function(categoriesSelected value)? categoriesSelected,
+    TResult? Function(categoriesClicked value)? categoriesClicked,
+  }) {
+    return categoriesClicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(categoriesFetch value)? categoriesFetch,
+    TResult Function(categoriesSelected value)? categoriesSelected,
+    TResult Function(categoriesClicked value)? categoriesClicked,
+    required TResult orElse(),
+  }) {
+    if (categoriesClicked != null) {
+      return categoriesClicked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class categoriesClicked implements CategoryEvent {
+  const factory categoriesClicked({required final CategoryModel category}) =
+      _$categoriesClickedImpl;
+
+  CategoryModel get category;
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$categoriesClickedImplCopyWith<_$categoriesClickedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -311,7 +500,9 @@ mixin _$CategoryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) =>
@@ -320,7 +511,9 @@ mixin _$CategoryState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) =>
@@ -329,7 +522,9 @@ mixin _$CategoryState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),
@@ -435,7 +630,9 @@ class _$initialImpl with DiagnosticableTreeMixin implements initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) {
@@ -447,7 +644,9 @@ class _$initialImpl with DiagnosticableTreeMixin implements initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) {
@@ -459,7 +658,9 @@ class _$initialImpl with DiagnosticableTreeMixin implements initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),
@@ -564,7 +765,9 @@ class _$loadingImpl with DiagnosticableTreeMixin implements loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) {
@@ -576,7 +779,9 @@ class _$loadingImpl with DiagnosticableTreeMixin implements loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) {
@@ -588,7 +793,9 @@ class _$loadingImpl with DiagnosticableTreeMixin implements loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),
@@ -650,7 +857,8 @@ abstract class _$$loadedImplCopyWith<$Res> {
           _$loadedImpl value, $Res Function(_$loadedImpl) then) =
       __$$loadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CategoryModel> categories});
+  $Res call(
+      {List<CategoryModel> categories, List<CategoryModel> favCategories});
 }
 
 /// @nodoc
@@ -667,11 +875,16 @@ class __$$loadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? categories = null,
+    Object? favCategories = null,
   }) {
     return _then(_$loadedImpl(
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>,
+      favCategories: null == favCategories
+          ? _value._favCategories
+          : favCategories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
     ));
   }
@@ -680,8 +893,11 @@ class __$$loadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
-  const _$loadedImpl({required final List<CategoryModel> categories})
-      : _categories = categories;
+  const _$loadedImpl(
+      {required final List<CategoryModel> categories,
+      required final List<CategoryModel> favCategories})
+      : _categories = categories,
+        _favCategories = favCategories;
 
   final List<CategoryModel> _categories;
   @override
@@ -691,9 +907,17 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
     return EqualUnmodifiableListView(_categories);
   }
 
+  final List<CategoryModel> _favCategories;
+  @override
+  List<CategoryModel> get favCategories {
+    if (_favCategories is EqualUnmodifiableListView) return _favCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favCategories);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryState.loaded(categories: $categories)';
+    return 'CategoryState.loaded(categories: $categories, favCategories: $favCategories)';
   }
 
   @override
@@ -701,7 +925,8 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'CategoryState.loaded'))
-      ..add(DiagnosticsProperty('categories', categories));
+      ..add(DiagnosticsProperty('categories', categories))
+      ..add(DiagnosticsProperty('favCategories', favCategories));
   }
 
   @override
@@ -710,12 +935,16 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
         (other.runtimeType == runtimeType &&
             other is _$loadedImpl &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            const DeepCollectionEquality()
+                .equals(other._favCategories, _favCategories));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_categories));
+      runtimeType,
+      const DeepCollectionEquality().hash(_categories),
+      const DeepCollectionEquality().hash(_favCategories));
 
   /// Create a copy of CategoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -730,11 +959,13 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) {
-    return loaded(categories);
+    return loaded(categories, favCategories);
   }
 
   @override
@@ -742,11 +973,13 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) {
-    return loaded?.call(categories);
+    return loaded?.call(categories, favCategories);
   }
 
   @override
@@ -754,13 +987,15 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(categories);
+      return loaded(categories, favCategories);
     }
     return orElse();
   }
@@ -807,10 +1042,12 @@ class _$loadedImpl with DiagnosticableTreeMixin implements loaded {
 }
 
 abstract class loaded implements CategoryState {
-  const factory loaded({required final List<CategoryModel> categories}) =
-      _$loadedImpl;
+  const factory loaded(
+      {required final List<CategoryModel> categories,
+      required final List<CategoryModel> favCategories}) = _$loadedImpl;
 
   List<CategoryModel> get categories;
+  List<CategoryModel> get favCategories;
 
   /// Create a copy of CategoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -868,7 +1105,9 @@ class _$checkDoneImpl with DiagnosticableTreeMixin implements checkDone {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) {
@@ -880,7 +1119,9 @@ class _$checkDoneImpl with DiagnosticableTreeMixin implements checkDone {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) {
@@ -892,7 +1133,9 @@ class _$checkDoneImpl with DiagnosticableTreeMixin implements checkDone {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),
@@ -1026,7 +1269,9 @@ class _$errorImpl with DiagnosticableTreeMixin implements error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)
+        loaded,
     required TResult Function() checkDone,
     required TResult Function(String e) error,
   }) {
@@ -1038,7 +1283,9 @@ class _$errorImpl with DiagnosticableTreeMixin implements error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult? Function()? checkDone,
     TResult? Function(String e)? error,
   }) {
@@ -1050,7 +1297,9 @@ class _$errorImpl with DiagnosticableTreeMixin implements error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(
+            List<CategoryModel> categories, List<CategoryModel> favCategories)?
+        loaded,
     TResult Function()? checkDone,
     TResult Function(String e)? error,
     required TResult orElse(),

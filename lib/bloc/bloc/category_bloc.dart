@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_weather/core/data_and_operation/lists/lists.dart';
+import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
+import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
 import 'package:bloc_weather/core/repo/category_repo.dart';
 import 'package:bloc_weather/core/models/category.dart';
 import 'package:flutter/foundation.dart';
@@ -16,26 +17,41 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     checkHiveForFav().then((favCategories) {
       if (favCategories.isEmpty) {
         // If there are no favorite categories, trigger the fetchCategories event
-        add(fetchCategories());
+        add(categoriesFetch());
       } else {
         // Otherwise, trigger the selcetedCategories event with the fetched categories
-        add(selcetedCategories());
+        add(categoriesSelected());
       }
     });
 
-    on<fetchCategories>((event, emit) async {
+    on<categoriesFetch>((event, emit) async {
       emit(loading());
       final CategoryRepository categoryRepo = CategoryRepository();
       categoriesList = await categoryRepo.fetchCategories();
-      log(categoriesList.toString());
+      //log(categoriesList.toString());
       if (categoriesList != []) {
-        emit(loaded(categories: categoriesList));
+        emit(loaded(
+            categories: List.from(categoriesList),
+            favCategories: List.from(favCategoriesList)));
       } else {
         emit(error(e: "Unable to fetch categories. try Restart the App"));
       }
     });
-    on<selcetedCategories>((event, emit) {
+
+    on<categoriesSelected>((event, emit) {
       emit(checkDone());
+    });
+
+    on<categoriesClicked>((event, emit) {
+      if (!favCategoriesList.contains(event.category)) {
+        favCategoriesList.add(event.category);
+      } else {
+        favCategoriesList.remove(event.category);
+      }
+
+      emit(loaded(
+          categories: List.from(categoriesList),
+          favCategories: List.from(favCategoriesList)));
     });
   }
 }

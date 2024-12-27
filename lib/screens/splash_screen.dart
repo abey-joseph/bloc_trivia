@@ -1,5 +1,4 @@
 import 'package:bloc_weather/bloc/bloc/category_bloc.dart';
-import 'package:bloc_weather/core/data_and_operation/lists/lists.dart';
 import 'package:bloc_weather/screens/cat_selection_screen.dart';
 import 'package:bloc_weather/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +22,7 @@ class SplashScreen extends StatelessWidget {
           // Navigate to catSelectionScreen if the state is loaded
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-                builder: (context) => CatSelectionScreen(
-                      categories: state.categories,
-                    )),
+            MaterialPageRoute(builder: (context) => CatSelectionScreen()),
           );
         }
       },
