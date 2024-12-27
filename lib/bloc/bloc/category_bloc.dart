@@ -43,11 +43,8 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     });
 
     on<categoriesClicked>((event, emit) {
-      if (!favCategoriesList.contains(event.category)) {
-        favCategoriesList.add(event.category);
-      } else {
-        favCategoriesList.remove(event.category);
-      }
+      // code to check if the category is already in Hive and if have then remove or else add then
+      editInHiveforFav(event.category);
 
       emit(loaded(
           categories: List.from(categoriesList),

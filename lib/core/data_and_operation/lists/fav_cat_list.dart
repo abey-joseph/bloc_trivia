@@ -13,5 +13,13 @@ Future<List<CategoryModel>> checkHiveForFav() async {
   return favCategoriesList;
 }
 
-
-// Function to collect data from 
+// Function to collect or or remove data from Hive based on given ID
+editInHiveforFav(CategoryModel category) {
+  var myBox = Hive.box<CategoryModel>('cat');
+  if (myBox.values.any((catInHive) => (catInHive == category))) {
+    myBox.delete(category.id);
+  } else {
+    myBox.put(category.id, category);
+  }
+  favCategoriesList = myBox.values.toList();
+}

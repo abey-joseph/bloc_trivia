@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc_weather/bloc/bloc/category_bloc.dart';
 import 'package:bloc_weather/core/data_and_operation/constants/colors.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
@@ -15,6 +17,7 @@ class CatSelectionScreen extends StatelessWidget {
     bool isFav;
     return BlocListener<CategoryBloc, CategoryState>(
       listener: (context, state) {
+        //log(state.toString());
         if (state is checkDone) {
           // Navigate to HomeScreen if the state is CheckDone
           Navigator.pushReplacement(
@@ -37,6 +40,7 @@ class CatSelectionScreen extends StatelessWidget {
                   ),
                   BlocBuilder<CategoryBloc, CategoryState>(
                     builder: (context, state) {
+                      //log(state.toString());
                       if (state is loaded) {
                         //log("hi");
                         return Wrap(
