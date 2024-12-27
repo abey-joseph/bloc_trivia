@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:bloc_weather/bloc/bloc/category_bloc.dart';
+import 'package:bloc_weather/bloc/category/category_bloc.dart';
 import 'package:bloc_weather/core/data_and_operation/constants/colors.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';

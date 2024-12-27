@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
 import 'package:bloc_weather/core/repo/category_repo.dart';
-import 'package:bloc_weather/core/models/category.dart';
+import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

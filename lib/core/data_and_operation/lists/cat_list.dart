@@ -1,5 +1,5 @@
 //import 'package:bloc_weather/core/lists/lists.dart';
-import 'package:bloc_weather/core/models/category.dart';
+import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
 
 List<CategoryModel> categoriesList = [];

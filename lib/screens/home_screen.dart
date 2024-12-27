@@ -1,5 +1,5 @@
-import 'package:bloc_weather/bloc/bloc/category_bloc.dart';
-import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
+import 'package:bloc_weather/bloc/category/category_bloc.dart';
+
 import 'package:bloc_weather/screens/cat_selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

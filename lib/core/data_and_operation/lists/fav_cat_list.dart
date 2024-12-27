@@ -1,4 +1,4 @@
-import 'package:bloc_weather/core/models/category.dart';
+import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 List<CategoryModel> favCategoriesList = [];

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:bloc_weather/core/models/category.dart';
+import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:dio/dio.dart';
 
 class CategoryRepository {
@@ -24,7 +24,7 @@ class CategoryRepository {
       }
     } catch (e) {
       // Handle other potential exceptions
-      log(e.toString() + ' hi');
+      log('$e hi');
       return [];
     }
   }

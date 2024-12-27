@@ -1,4 +1,4 @@
-import 'package:bloc_weather/bloc/bloc/category_bloc.dart';
+import 'package:bloc_weather/bloc/category/category_bloc.dart';
 import 'package:bloc_weather/screens/cat_selection_screen.dart';
 import 'package:bloc_weather/screens/home_screen.dart';
 import 'package:flutter/material.dart';
