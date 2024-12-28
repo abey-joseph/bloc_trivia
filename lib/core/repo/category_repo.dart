@@ -6,8 +6,6 @@ import 'package:dio/dio.dart';
 class CategoryRepository {
   final Dio _dio = Dio();
 
-  CategoryRepository();
-
   Future<List<CategoryModel>> fetchCategories() async {
     try {
       final response = await _dio.get('https://opentdb.com/api_category.php');
@@ -24,7 +22,7 @@ class CategoryRepository {
       }
     } catch (e) {
       // Handle other potential exceptions
-      log('$e hi');
+      //log('$e hi');
       return [];
     }
   }

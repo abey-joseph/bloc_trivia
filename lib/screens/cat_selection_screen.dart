@@ -87,9 +87,11 @@ class CatSelectionScreen extends StatelessWidget {
                     builder: (context, state) {
                       return ElevatedButton.icon(
                         onPressed: () {
-                          context
-                              .read<CategoryBloc>()
-                              .add(categoriesSelected());
+                          if (favCategoriesList.length >= 3) {
+                            context
+                                .read<CategoryBloc>()
+                                .add(categoriesSelected());
+                          }
                         },
                         icon: Icon(
                           Icons.forward,
