@@ -19,19 +19,22 @@ mixin _$TriviaEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() triviaFetchEvent,
-    required TResult Function() triviaSelectEvent,
+    required TResult Function(String selectedAnswer, TriviaModel trivia)
+        triviaSelectEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? triviaFetchEvent,
-    TResult? Function()? triviaSelectEvent,
+    TResult? Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? triviaFetchEvent,
-    TResult Function()? triviaSelectEvent,
+    TResult Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +122,8 @@ class _$triviaFetchEventImpl implements triviaFetchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() triviaFetchEvent,
-    required TResult Function() triviaSelectEvent,
+    required TResult Function(String selectedAnswer, TriviaModel trivia)
+        triviaSelectEvent,
   }) {
     return triviaFetchEvent();
   }
@@ -128,7 +132,8 @@ class _$triviaFetchEventImpl implements triviaFetchEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? triviaFetchEvent,
-    TResult? Function()? triviaSelectEvent,
+    TResult? Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
   }) {
     return triviaFetchEvent?.call();
   }
@@ -137,7 +142,8 @@ class _$triviaFetchEventImpl implements triviaFetchEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? triviaFetchEvent,
-    TResult Function()? triviaSelectEvent,
+    TResult Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
     required TResult orElse(),
   }) {
     if (triviaFetchEvent != null) {
@@ -187,6 +193,10 @@ abstract class _$$triviaSelectEventImplCopyWith<$Res> {
   factory _$$triviaSelectEventImplCopyWith(_$triviaSelectEventImpl value,
           $Res Function(_$triviaSelectEventImpl) then) =
       __$$triviaSelectEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String selectedAnswer, TriviaModel trivia});
+
+  $TriviaModelCopyWith<$Res> get trivia;
 }
 
 /// @nodoc
@@ -199,54 +209,103 @@ class __$$triviaSelectEventImplCopyWithImpl<$Res>
 
   /// Create a copy of TriviaEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedAnswer = null,
+    Object? trivia = null,
+  }) {
+    return _then(_$triviaSelectEventImpl(
+      selectedAnswer: null == selectedAnswer
+          ? _value.selectedAnswer
+          : selectedAnswer // ignore: cast_nullable_to_non_nullable
+              as String,
+      trivia: null == trivia
+          ? _value.trivia
+          : trivia // ignore: cast_nullable_to_non_nullable
+              as TriviaModel,
+    ));
+  }
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TriviaModelCopyWith<$Res> get trivia {
+    return $TriviaModelCopyWith<$Res>(_value.trivia, (value) {
+      return _then(_value.copyWith(trivia: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$triviaSelectEventImpl implements triviaSelectEvent {
-  const _$triviaSelectEventImpl();
+  const _$triviaSelectEventImpl(
+      {required this.selectedAnswer, required this.trivia});
+
+  @override
+  final String selectedAnswer;
+  @override
+  final TriviaModel trivia;
 
   @override
   String toString() {
-    return 'TriviaEvent.triviaSelectEvent()';
+    return 'TriviaEvent.triviaSelectEvent(selectedAnswer: $selectedAnswer, trivia: $trivia)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$triviaSelectEventImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$triviaSelectEventImpl &&
+            (identical(other.selectedAnswer, selectedAnswer) ||
+                other.selectedAnswer == selectedAnswer) &&
+            (identical(other.trivia, trivia) || other.trivia == trivia));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, selectedAnswer, trivia);
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$triviaSelectEventImplCopyWith<_$triviaSelectEventImpl> get copyWith =>
+      __$$triviaSelectEventImplCopyWithImpl<_$triviaSelectEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() triviaFetchEvent,
-    required TResult Function() triviaSelectEvent,
+    required TResult Function(String selectedAnswer, TriviaModel trivia)
+        triviaSelectEvent,
   }) {
-    return triviaSelectEvent();
+    return triviaSelectEvent(selectedAnswer, trivia);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? triviaFetchEvent,
-    TResult? Function()? triviaSelectEvent,
+    TResult? Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
   }) {
-    return triviaSelectEvent?.call();
+    return triviaSelectEvent?.call(selectedAnswer, trivia);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? triviaFetchEvent,
-    TResult Function()? triviaSelectEvent,
+    TResult Function(String selectedAnswer, TriviaModel trivia)?
+        triviaSelectEvent,
     required TResult orElse(),
   }) {
     if (triviaSelectEvent != null) {
-      return triviaSelectEvent();
+      return triviaSelectEvent(selectedAnswer, trivia);
     }
     return orElse();
   }
@@ -284,7 +343,18 @@ class _$triviaSelectEventImpl implements triviaSelectEvent {
 }
 
 abstract class triviaSelectEvent implements TriviaEvent {
-  const factory triviaSelectEvent() = _$triviaSelectEventImpl;
+  const factory triviaSelectEvent(
+      {required final String selectedAnswer,
+      required final TriviaModel trivia}) = _$triviaSelectEventImpl;
+
+  String get selectedAnswer;
+  TriviaModel get trivia;
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$triviaSelectEventImplCopyWith<_$triviaSelectEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -293,24 +363,30 @@ mixin _$TriviaState {
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
     required TResult Function() loadingState,
-    required TResult Function(TriviaModel trivia) loadedState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
     required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
-    TResult? Function(TriviaModel trivia)? loadedState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
     TResult Function()? loadingState,
-    TResult Function(TriviaModel trivia)? loadedState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -320,6 +396,7 @@ mixin _$TriviaState {
     required TResult Function(loadingState value) loadingState,
     required TResult Function(loadedState value) loadedState,
     required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -328,6 +405,7 @@ mixin _$TriviaState {
     TResult? Function(loadingState value)? loadingState,
     TResult? Function(loadedState value)? loadedState,
     TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -336,6 +414,7 @@ mixin _$TriviaState {
     TResult Function(loadingState value)? loadingState,
     TResult Function(loadedState value)? loadedState,
     TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -405,8 +484,10 @@ class _$initialStateImpl implements initialState {
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
     required TResult Function() loadingState,
-    required TResult Function(TriviaModel trivia) loadedState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
     required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
   }) {
     return initialState();
   }
@@ -416,8 +497,10 @@ class _$initialStateImpl implements initialState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
-    TResult? Function(TriviaModel trivia)? loadedState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
   }) {
     return initialState?.call();
   }
@@ -427,8 +510,10 @@ class _$initialStateImpl implements initialState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
     TResult Function()? loadingState,
-    TResult Function(TriviaModel trivia)? loadedState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
     required TResult orElse(),
   }) {
     if (initialState != null) {
@@ -444,6 +529,7 @@ class _$initialStateImpl implements initialState {
     required TResult Function(loadingState value) loadingState,
     required TResult Function(loadedState value) loadedState,
     required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
   }) {
     return initialState(this);
   }
@@ -455,6 +541,7 @@ class _$initialStateImpl implements initialState {
     TResult? Function(loadingState value)? loadingState,
     TResult? Function(loadedState value)? loadedState,
     TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
   }) {
     return initialState?.call(this);
   }
@@ -466,6 +553,7 @@ class _$initialStateImpl implements initialState {
     TResult Function(loadingState value)? loadingState,
     TResult Function(loadedState value)? loadedState,
     TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
     required TResult orElse(),
   }) {
     if (initialState != null) {
@@ -522,8 +610,10 @@ class _$loadingStateImpl implements loadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
     required TResult Function() loadingState,
-    required TResult Function(TriviaModel trivia) loadedState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
     required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
   }) {
     return loadingState();
   }
@@ -533,8 +623,10 @@ class _$loadingStateImpl implements loadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
-    TResult? Function(TriviaModel trivia)? loadedState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
   }) {
     return loadingState?.call();
   }
@@ -544,8 +636,10 @@ class _$loadingStateImpl implements loadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
     TResult Function()? loadingState,
-    TResult Function(TriviaModel trivia)? loadedState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
     required TResult orElse(),
   }) {
     if (loadingState != null) {
@@ -561,6 +655,7 @@ class _$loadingStateImpl implements loadingState {
     required TResult Function(loadingState value) loadingState,
     required TResult Function(loadedState value) loadedState,
     required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
   }) {
     return loadingState(this);
   }
@@ -572,6 +667,7 @@ class _$loadingStateImpl implements loadingState {
     TResult? Function(loadingState value)? loadingState,
     TResult? Function(loadedState value)? loadedState,
     TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
   }) {
     return loadingState?.call(this);
   }
@@ -583,6 +679,7 @@ class _$loadingStateImpl implements loadingState {
     TResult Function(loadingState value)? loadingState,
     TResult Function(loadedState value)? loadedState,
     TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
     required TResult orElse(),
   }) {
     if (loadingState != null) {
@@ -602,9 +699,10 @@ abstract class _$$loadedStateImplCopyWith<$Res> {
           _$loadedStateImpl value, $Res Function(_$loadedStateImpl) then) =
       __$$loadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({TriviaModel trivia});
+  $Res call({TriviaModel currentTrivia, TriviaModel nextTrivia});
 
-  $TriviaModelCopyWith<$Res> get trivia;
+  $TriviaModelCopyWith<$Res> get currentTrivia;
+  $TriviaModelCopyWith<$Res> get nextTrivia;
 }
 
 /// @nodoc
@@ -620,12 +718,17 @@ class __$$loadedStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? trivia = null,
+    Object? currentTrivia = null,
+    Object? nextTrivia = null,
   }) {
     return _then(_$loadedStateImpl(
-      trivia: null == trivia
-          ? _value.trivia
-          : trivia // ignore: cast_nullable_to_non_nullable
+      currentTrivia: null == currentTrivia
+          ? _value.currentTrivia
+          : currentTrivia // ignore: cast_nullable_to_non_nullable
+              as TriviaModel,
+      nextTrivia: null == nextTrivia
+          ? _value.nextTrivia
+          : nextTrivia // ignore: cast_nullable_to_non_nullable
               as TriviaModel,
     ));
   }
@@ -634,9 +737,19 @@ class __$$loadedStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $TriviaModelCopyWith<$Res> get trivia {
-    return $TriviaModelCopyWith<$Res>(_value.trivia, (value) {
-      return _then(_value.copyWith(trivia: value));
+  $TriviaModelCopyWith<$Res> get currentTrivia {
+    return $TriviaModelCopyWith<$Res>(_value.currentTrivia, (value) {
+      return _then(_value.copyWith(currentTrivia: value));
+    });
+  }
+
+  /// Create a copy of TriviaState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TriviaModelCopyWith<$Res> get nextTrivia {
+    return $TriviaModelCopyWith<$Res>(_value.nextTrivia, (value) {
+      return _then(_value.copyWith(nextTrivia: value));
     });
   }
 }
@@ -644,14 +757,17 @@ class __$$loadedStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$loadedStateImpl implements loadedState {
-  const _$loadedStateImpl({required this.trivia});
+  const _$loadedStateImpl(
+      {required this.currentTrivia, required this.nextTrivia});
 
   @override
-  final TriviaModel trivia;
+  final TriviaModel currentTrivia;
+  @override
+  final TriviaModel nextTrivia;
 
   @override
   String toString() {
-    return 'TriviaState.loadedState(trivia: $trivia)';
+    return 'TriviaState.loadedState(currentTrivia: $currentTrivia, nextTrivia: $nextTrivia)';
   }
 
   @override
@@ -659,11 +775,14 @@ class _$loadedStateImpl implements loadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$loadedStateImpl &&
-            (identical(other.trivia, trivia) || other.trivia == trivia));
+            (identical(other.currentTrivia, currentTrivia) ||
+                other.currentTrivia == currentTrivia) &&
+            (identical(other.nextTrivia, nextTrivia) ||
+                other.nextTrivia == nextTrivia));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, trivia);
+  int get hashCode => Object.hash(runtimeType, currentTrivia, nextTrivia);
 
   /// Create a copy of TriviaState
   /// with the given fields replaced by the non-null parameter values.
@@ -678,10 +797,12 @@ class _$loadedStateImpl implements loadedState {
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
     required TResult Function() loadingState,
-    required TResult Function(TriviaModel trivia) loadedState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
     required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
   }) {
-    return loadedState(trivia);
+    return loadedState(currentTrivia, nextTrivia);
   }
 
   @override
@@ -689,10 +810,12 @@ class _$loadedStateImpl implements loadedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
-    TResult? Function(TriviaModel trivia)? loadedState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
   }) {
-    return loadedState?.call(trivia);
+    return loadedState?.call(currentTrivia, nextTrivia);
   }
 
   @override
@@ -700,12 +823,14 @@ class _$loadedStateImpl implements loadedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
     TResult Function()? loadingState,
-    TResult Function(TriviaModel trivia)? loadedState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
     required TResult orElse(),
   }) {
     if (loadedState != null) {
-      return loadedState(trivia);
+      return loadedState(currentTrivia, nextTrivia);
     }
     return orElse();
   }
@@ -717,6 +842,7 @@ class _$loadedStateImpl implements loadedState {
     required TResult Function(loadingState value) loadingState,
     required TResult Function(loadedState value) loadedState,
     required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
   }) {
     return loadedState(this);
   }
@@ -728,6 +854,7 @@ class _$loadedStateImpl implements loadedState {
     TResult? Function(loadingState value)? loadingState,
     TResult? Function(loadedState value)? loadedState,
     TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
   }) {
     return loadedState?.call(this);
   }
@@ -739,6 +866,7 @@ class _$loadedStateImpl implements loadedState {
     TResult Function(loadingState value)? loadingState,
     TResult Function(loadedState value)? loadedState,
     TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
     required TResult orElse(),
   }) {
     if (loadedState != null) {
@@ -749,10 +877,12 @@ class _$loadedStateImpl implements loadedState {
 }
 
 abstract class loadedState implements TriviaState {
-  const factory loadedState({required final TriviaModel trivia}) =
-      _$loadedStateImpl;
+  const factory loadedState(
+      {required final TriviaModel currentTrivia,
+      required final TriviaModel nextTrivia}) = _$loadedStateImpl;
 
-  TriviaModel get trivia;
+  TriviaModel get currentTrivia;
+  TriviaModel get nextTrivia;
 
   /// Create a copy of TriviaState
   /// with the given fields replaced by the non-null parameter values.
@@ -831,8 +961,10 @@ class _$errorStateImpl implements errorState {
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
     required TResult Function() loadingState,
-    required TResult Function(TriviaModel trivia) loadedState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
     required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
   }) {
     return errorState(e);
   }
@@ -842,8 +974,10 @@ class _$errorStateImpl implements errorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
     TResult? Function()? loadingState,
-    TResult? Function(TriviaModel trivia)? loadedState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
   }) {
     return errorState?.call(e);
   }
@@ -853,8 +987,10 @@ class _$errorStateImpl implements errorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
     TResult Function()? loadingState,
-    TResult Function(TriviaModel trivia)? loadedState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
     TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
     required TResult orElse(),
   }) {
     if (errorState != null) {
@@ -870,6 +1006,7 @@ class _$errorStateImpl implements errorState {
     required TResult Function(loadingState value) loadingState,
     required TResult Function(loadedState value) loadedState,
     required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
   }) {
     return errorState(this);
   }
@@ -881,6 +1018,7 @@ class _$errorStateImpl implements errorState {
     TResult? Function(loadingState value)? loadingState,
     TResult? Function(loadedState value)? loadedState,
     TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
   }) {
     return errorState?.call(this);
   }
@@ -892,6 +1030,7 @@ class _$errorStateImpl implements errorState {
     TResult Function(loadingState value)? loadingState,
     TResult Function(loadedState value)? loadedState,
     TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
     required TResult orElse(),
   }) {
     if (errorState != null) {
@@ -910,5 +1049,168 @@ abstract class errorState implements TriviaState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$errorStateImplCopyWith<_$errorStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$succesStateImplCopyWith<$Res> {
+  factory _$$succesStateImplCopyWith(
+          _$succesStateImpl value, $Res Function(_$succesStateImpl) then) =
+      __$$succesStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isCorrect});
+}
+
+/// @nodoc
+class __$$succesStateImplCopyWithImpl<$Res>
+    extends _$TriviaStateCopyWithImpl<$Res, _$succesStateImpl>
+    implements _$$succesStateImplCopyWith<$Res> {
+  __$$succesStateImplCopyWithImpl(
+      _$succesStateImpl _value, $Res Function(_$succesStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TriviaState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCorrect = null,
+  }) {
+    return _then(_$succesStateImpl(
+      isCorrect: null == isCorrect
+          ? _value.isCorrect
+          : isCorrect // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$succesStateImpl implements succesState {
+  const _$succesStateImpl({required this.isCorrect});
+
+  @override
+  final bool isCorrect;
+
+  @override
+  String toString() {
+    return 'TriviaState.succesState(isCorrect: $isCorrect)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$succesStateImpl &&
+            (identical(other.isCorrect, isCorrect) ||
+                other.isCorrect == isCorrect));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isCorrect);
+
+  /// Create a copy of TriviaState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$succesStateImplCopyWith<_$succesStateImpl> get copyWith =>
+      __$$succesStateImplCopyWithImpl<_$succesStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialState,
+    required TResult Function() loadingState,
+    required TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)
+        loadedState,
+    required TResult Function(String e) errorState,
+    required TResult Function(bool isCorrect) succesState,
+  }) {
+    return succesState(isCorrect);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialState,
+    TResult? Function()? loadingState,
+    TResult? Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
+    TResult? Function(String e)? errorState,
+    TResult? Function(bool isCorrect)? succesState,
+  }) {
+    return succesState?.call(isCorrect);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialState,
+    TResult Function()? loadingState,
+    TResult Function(TriviaModel currentTrivia, TriviaModel nextTrivia)?
+        loadedState,
+    TResult Function(String e)? errorState,
+    TResult Function(bool isCorrect)? succesState,
+    required TResult orElse(),
+  }) {
+    if (succesState != null) {
+      return succesState(isCorrect);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(initialState value) initialState,
+    required TResult Function(loadingState value) loadingState,
+    required TResult Function(loadedState value) loadedState,
+    required TResult Function(errorState value) errorState,
+    required TResult Function(succesState value) succesState,
+  }) {
+    return succesState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(initialState value)? initialState,
+    TResult? Function(loadingState value)? loadingState,
+    TResult? Function(loadedState value)? loadedState,
+    TResult? Function(errorState value)? errorState,
+    TResult? Function(succesState value)? succesState,
+  }) {
+    return succesState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(initialState value)? initialState,
+    TResult Function(loadingState value)? loadingState,
+    TResult Function(loadedState value)? loadedState,
+    TResult Function(errorState value)? errorState,
+    TResult Function(succesState value)? succesState,
+    required TResult orElse(),
+  }) {
+    if (succesState != null) {
+      return succesState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class succesState implements TriviaState {
+  const factory succesState({required final bool isCorrect}) =
+      _$succesStateImpl;
+
+  bool get isCorrect;
+
+  /// Create a copy of TriviaState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$succesStateImplCopyWith<_$succesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
