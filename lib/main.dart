@@ -1,4 +1,5 @@
 import 'package:bloc_weather/bloc/category/category_bloc.dart';
+import 'package:bloc_weather/bloc/trivia/trivia_bloc.dart';
 import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:bloc_weather/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,19 @@ void main() async {
     // move the data from the hive to fav list
   }
 
-  runApp(BlocProvider(
-    create: (context) => CategoryBloc(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<CategoryBloc>(
+        create: (context) => CategoryBloc(),
+      ),
+      BlocProvider<TriviaBloc>(
+        create: (context) {
+          TriviaBloc triviaBloc = TriviaBloc();
+          triviaBloc.add(triviaFetchEvent());
+          return triviaBloc;
+        },
+      ),
+    ],
     child: MyTriviaApp(),
   ));
 }

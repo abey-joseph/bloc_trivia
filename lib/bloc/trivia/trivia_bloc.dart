@@ -15,13 +15,15 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
   TriviaModel? nextTrivia;
 
   TriviaBloc() : super(initialState()) {
-    add(TriviaEvent.triviaFetchEvent());
+    //add(TriviaEvent.triviaFetchEvent());
 
     on<triviaFetchEvent>((event, emit) async {
       emit(loadingState());
 
       if (currentTrivia == null) {
         currentTrivia = await _fetchTrivia(emit);
+        await Future.delayed(
+            Duration(milliseconds: 5000)); // Adjust the delay as needed
         nextTrivia = await _fetchTrivia(emit);
       } else {
         currentTrivia = nextTrivia;
@@ -30,7 +32,10 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
 
       emit(loadedState(currentTrivia: currentTrivia!, nextTrivia: nextTrivia!));
     });
-    on<triviaSelectEvent>((event, emit) {
+
+//trying to get API result from bloc itself instead of calling the repo - later remove it
+
+    on<triviaSelectEvent>((event, emit) async {
       String options = event.trivia.correctAnswer;
       if (options == event.selectedAnswer) {
         emit(succesState(isCorrect: true));
