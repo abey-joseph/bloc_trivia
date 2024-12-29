@@ -1,5 +1,6 @@
 import 'package:bloc_weather/bloc/category/category_bloc.dart';
 import 'package:bloc_weather/bloc/trivia/trivia_bloc.dart';
+import 'package:bloc_weather/core/models/trivia/trivia.dart';
 
 import 'package:bloc_weather/screens/cat_selection_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,11 @@ class HomeScreen extends StatelessWidget {
               return PageView.builder(
                 itemCount:
                     1000, // Arbitrary large number to allow indefinite swiping
+                onPageChanged: (pageNo) {
+                  context
+                      .read<TriviaBloc>()
+                      .add(TriviaEvent.triviaFetchEvent());
+                },
                 itemBuilder: (context, index) {
                   final trivia = index % 2 == 0 ? currentTrivia : nextTrivia;
                   return Padding(

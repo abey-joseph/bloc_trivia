@@ -22,8 +22,8 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
 
       if (currentTrivia == null) {
         currentTrivia = await _fetchTrivia(emit);
-        await Future.delayed(
-            Duration(milliseconds: 5000)); // Adjust the delay as needed
+        // await Future.delayed(
+        //     Duration(milliseconds: 5000)); // Adjust the delay as needed
         nextTrivia = await _fetchTrivia(emit);
       } else {
         currentTrivia = nextTrivia;
