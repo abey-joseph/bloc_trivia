@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
           // Navigate to HomeScreen if the state is CheckDone
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
           );
         }
         if (state is loaded) {

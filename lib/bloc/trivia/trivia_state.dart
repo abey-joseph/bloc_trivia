@@ -2,13 +2,11 @@ part of 'trivia_bloc.dart';
 
 @freezed
 class TriviaState with _$TriviaState {
-  const factory TriviaState.initialState() = initialState;
-  const factory TriviaState.loadingState() = loadingState;
-  const factory TriviaState.loadedState({
-    required TriviaModel currentTrivia,
-    required TriviaModel nextTrivia,
-  }) = loadedState;
-  const factory TriviaState.errorState({required String e}) = errorState;
-  const factory TriviaState.succesState({required bool isCorrect}) =
-      succesState;
+  const factory TriviaState.initialTriviaState() = initialTriviaState;
+  const factory TriviaState.loadingTriviaState() = loadingTriviaState;
+  const factory TriviaState.errorTriviaState({required String error}) =
+      errorTriviaState;
+  const factory TriviaState.loadedTriviaState(
+      {required List<TriviaModel> triviaList,
+      required int pageIndex}) = loadedTriviaState;
 }

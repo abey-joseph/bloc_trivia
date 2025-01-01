@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:bloc_weather/bloc/category/category_bloc.dart';
 import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:bloc_weather/core/repo/trivia_repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,49 +10,61 @@ part 'trivia_state.dart';
 part 'trivia_bloc.freezed.dart';
 
 class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
-  final TriviaRepository repo = TriviaRepository();
+  final TriviaRepo triviaRepo =
+      TriviaRepo(number: 1, cat: '9', type: 'multiple');
+  final List<TriviaModel> triviaList = [];
 
-  TriviaModel? currentTrivia;
-  TriviaModel? nextTrivia;
+  TriviaBloc() : super(initialTriviaState()) {
+    on<fetchTriviaEvent>((event, emit) async {
+      try {
+        if (triviaList.isEmpty) {
+          emit(loadingTriviaState());
 
-  TriviaBloc() : super(initialState()) {
-    //add(TriviaEvent.triviaFetchEvent());
+          //add the first trivia
+          triviaList.add(await triviaRepo.fetchTrivia());
+          log("trivia added at ${triviaList.length}");
 
-    on<triviaFetchEvent>((event, emit) async {
-      emit(loadingState());
+          //add the second dummy trivia before loading the view
+          triviaList.add(TriviaModel(
+              type: 'multiple',
+              difficulty: 'medium',
+              category: '9',
+              question: 'Loading the next Trivia',
+              correctAnswer: 'loading',
+              incorrectAnswers: ['loading', 'loading', 'loading']));
 
-      if (currentTrivia == null) {
-        currentTrivia = await _fetchTrivia(emit);
-        // await Future.delayed(
-        //     Duration(milliseconds: 5000)); // Adjust the delay as needed
-        nextTrivia = await _fetchTrivia(emit);
-      } else {
-        currentTrivia = nextTrivia;
-        nextTrivia = await _fetchTrivia(emit);
+          log("trivia (dummy) added at ${triviaList.length}");
+
+          //emit a new state and display to the user
+          emit(loadedTriviaState(
+              triviaList: triviaList.toList(), pageIndex: event.pageIndex));
+
+          //fetch for the next trivia and insert before the dummy trivia
+          triviaList.insert(
+              triviaList.length - 1, await triviaRepo.fetchTrivia());
+
+          log("trivia added at (before dummy)   ${triviaList.length - 1}");
+
+          emit(loadedTriviaState(
+              triviaList: triviaList.toList(), pageIndex: event.pageIndex));
+        } else {
+          //if not fetching for the first time
+
+          //fetch for the next trivia and insert before the dummy trivia
+          triviaList.insert(
+              triviaList.length - 1, await triviaRepo.fetchTrivia());
+
+          log("trivia added at (before dummy)   ${triviaList.length - 1}");
+
+          emit(loadedTriviaState(
+              triviaList: triviaList.toList(), pageIndex: event.pageIndex));
+        }
+
+        //
+      } catch (e) {
+        //if error
+        emit(errorTriviaState(error: e.toString()));
       }
-
-      emit(loadedState(currentTrivia: currentTrivia!, nextTrivia: nextTrivia!));
     });
-
-//trying to get API result from bloc itself instead of calling the repo - later remove it
-
-    on<triviaSelectEvent>((event, emit) async {
-      String options = event.trivia.correctAnswer;
-      if (options == event.selectedAnswer) {
-        emit(succesState(isCorrect: true));
-      } else {
-        emit(succesState(isCorrect: false));
-      }
-    });
-  }
-
-  Future<TriviaModel> _fetchTrivia(Emitter<TriviaState> emit) async {
-    try {
-      final trivia = await repo.fetchTrivia(9, 'multiple');
-      return trivia;
-    } catch (e) {
-      emit(errorState(e: e.toString()));
-      rethrow;
-    }
   }
 }

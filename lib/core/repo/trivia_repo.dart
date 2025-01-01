@@ -3,46 +3,84 @@ import 'dart:developer';
 import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:dio/dio.dart';
 
-class TriviaRepository {
-  final Dio _dio = Dio();
+class TriviaRepo {
+  int count = 0;
 
-  Future<TriviaModel> fetchTrivia(int cat, String type) async {
-    try {
-      return await dioRequest(cat, type);
-    } on DioException catch (e) {
-      await Future.delayed(Duration(milliseconds: 5000));
-      return await dioRequest(cat, type);
-    } catch (e) {
-      throw Exception("An error occurred while fetching trivia question: $e");
+  final int number;
+  final String cat;
+  final String type;
+
+  final _dio = Dio();
+
+  bool _isProcessing = false;
+
+  final String url = "https://opentdb.com/api.php";
+
+  TriviaRepo({required this.number, required this.cat, required this.type});
+
+  Future<TriviaModel> fetchTrivia() async {
+    log(count.toString());
+    count++;
+
+    while (_isProcessing) {
+      await Future.delayed(Duration(microseconds: 200));
     }
-    //throw Exception("An error occurred while fetching trivia question.");
-  }
 
-  Future<TriviaModel> dioRequest(int cat, String type) async {
-    final response = await _dio.get(
-      "https://opentdb.com/api.php",
-      queryParameters: {
-        'amount': 1,
+    _isProcessing = true;
+
+    try {
+      final response = await _dio.get(url, queryParameters: {
+        'amount': number,
         'category': cat,
         'type': type,
-      },
-    );
+      });
 
-    if (response.statusCode == 200) {
-      final data = response.data;
+      if (response.statusCode == 200) {
+        //trim the response
+        final data = response.data;
 
-      if (data['results'] != null) {
-        try {
-          return TriviaModel.fromJson(data['results'][0]);
-        } catch (e) {
-          rethrow;
-        }
+        //move to a TriviaModel Object
+        final TriviaModel trivia = TriviaModel.fromJson(data['results'][0]);
+
+        //indicate that API request done and ready for the new request
+        Future.delayed(Duration(milliseconds: 6000), () {
+          _isProcessing = false;
+        });
+
+        return trivia;
+      } else if (response.statusCode == 429) {
+        //if the errror is 429 it means need to wait 6 seconds before next call, so wait for 6 secons
+        Future.delayed(Duration(milliseconds: 6000));
+
+        _isProcessing = true;
+
+        //making a new request
+        final response = await _dio.get(url, queryParameters: {
+          'amount': number,
+          'category': cat,
+          'type': type,
+        });
+
+        //trim the response
+        final data = response.data;
+
+        // move to TriviaModel objext
+        final TriviaModel trivia = TriviaModel.fromJson(data['results'][0]);
+
+        //indicate that next API can be done to avoid multiple request at one time
+        Future.delayed(Duration(milliseconds: 6000), () {
+          _isProcessing = false;
+        });
+
+        //returns the Trivia object
+        return trivia;
+
+        //
       } else {
-        throw Exception("No trivia questions found.");
+        throw Exception('error dong API request ${response.statusCode}');
       }
-    } else {
-      throw Exception(
-          "Failed to fetch trivia question. Status: ${response.statusCode}");
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }
