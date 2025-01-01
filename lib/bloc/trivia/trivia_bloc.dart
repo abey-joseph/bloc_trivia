@@ -22,7 +22,6 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
 
           //add the first trivia
           triviaList.add(await triviaRepo.fetchTrivia());
-          log("trivia added at ${triviaList.length}");
 
           //add the second dummy trivia before loading the view
           triviaList.add(TriviaModel(
@@ -33,8 +32,6 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
               correctAnswer: 'loading',
               incorrectAnswers: ['loading', 'loading', 'loading']));
 
-          log("trivia (dummy) added at ${triviaList.length}");
-
           //emit a new state and display to the user
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));
@@ -42,8 +39,6 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
           //fetch for the next trivia and insert before the dummy trivia
           triviaList.insert(
               triviaList.length - 1, await triviaRepo.fetchTrivia());
-
-          log("trivia added at (before dummy)   ${triviaList.length - 1}");
 
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));
@@ -53,8 +48,6 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
           //fetch for the next trivia and insert before the dummy trivia
           triviaList.insert(
               triviaList.length - 1, await triviaRepo.fetchTrivia());
-
-          log("trivia added at (before dummy)   ${triviaList.length - 1}");
 
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));

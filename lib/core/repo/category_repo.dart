@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:dio/dio.dart';
 

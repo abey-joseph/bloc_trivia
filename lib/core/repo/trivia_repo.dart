@@ -4,8 +4,6 @@ import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:dio/dio.dart';
 
 class TriviaRepo {
-  int count = 0;
-
   final int number;
   final String cat;
   final String type;
@@ -19,9 +17,6 @@ class TriviaRepo {
   TriviaRepo({required this.number, required this.cat, required this.type});
 
   Future<TriviaModel> fetchTrivia() async {
-    log(count.toString());
-    count++;
-
     while (_isProcessing) {
       await Future.delayed(Duration(microseconds: 200));
     }
