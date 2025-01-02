@@ -5,19 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:html_unescape/html_unescape.dart';
 
 class TriviaRepo {
-  final int number;
-  final String cat;
-  final String type;
-
   final _dio = Dio();
 
   bool _isProcessing = false;
 
   final String url = "https://opentdb.com/api.php";
 
-  TriviaRepo({required this.number, required this.cat, required this.type});
-
-  Future<TriviaModel> fetchTrivia() async {
+  Future<TriviaModel> fetchTrivia(
+      {required int number, required int cat, required String type}) async {
     while (_isProcessing) {
       await Future.delayed(Duration(microseconds: 200));
     }

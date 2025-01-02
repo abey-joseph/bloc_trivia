@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -22,4 +24,10 @@ editInHiveforFav(CategoryModel category) {
     myBox.put(category.id, category);
   }
   favCategoriesList = myBox.values.toList();
+}
+
+// function to return random value category from the list
+CategoryModel getRandomCategory() {
+  final random = Random();
+  return favCategoriesList[random.nextInt(favCategoriesList.length)];
 }

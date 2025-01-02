@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
+import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
 import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:bloc_weather/core/repo/trivia_repo.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,7 @@ part 'trivia_state.dart';
 part 'trivia_bloc.freezed.dart';
 
 class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
-  final TriviaRepo triviaRepo =
-      TriviaRepo(number: 1, cat: '9', type: 'multiple');
+  final TriviaRepo triviaRepo = TriviaRepo();
   final List<TriviaModel> triviaList = [];
   TriviaModel newFetchedTrivia = TriviaModel(
       type: 'multiple',
@@ -28,10 +29,7 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
         if (triviaList.isEmpty) {
           emit(loadingTriviaState());
 
-          //add the first trivia
-          triviaList.add(await triviaRepo.fetchTrivia());
-
-          //add the second dummy trivia before loading the view
+          //add the  dummy trivia before loading the view
           triviaList.add(TriviaModel(
               type: 'multiple',
               difficulty: 'medium',
@@ -40,12 +38,18 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
               correctAnswer: 'loading',
               incorrectAnswers: ['loading', 'loading', 'loading', 'loading']));
 
+          //add the first trivia
+          newFetchedTrivia = await triviaRepo.fetchTrivia(
+              number: 1, cat: getRandomCategory().id, type: 'multiple');
+          triviaList.insert(triviaList.length - 1, newFetchedTrivia);
+
           //emit a new state and display to the user
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));
 
           //fetch for the next trivia and insert before the dummy trivia
-          newFetchedTrivia = await triviaRepo.fetchTrivia();
+          newFetchedTrivia = await triviaRepo.fetchTrivia(
+              number: 1, cat: getRandomCategory().id, type: 'multiple');
           triviaList.insert(triviaList.length - 1, newFetchedTrivia);
 
           emit(loadedTriviaState(
@@ -55,7 +59,50 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
 
           //fetch for the next trivia and insert before the dummy trivia
 
-          newFetchedTrivia = await triviaRepo.fetchTrivia();
+          newFetchedTrivia = await triviaRepo.fetchTrivia(
+              number: 1, cat: getRandomCategory().id, type: 'multiple');
+          triviaList.insert(triviaList.length - 1, newFetchedTrivia);
+
+          emit(loadedTriviaState(
+              triviaList: triviaList.toList(), pageIndex: event.pageIndex));
+        }
+
+        //
+      } catch (e) {
+        //if error
+        emit(errorTriviaState(error: e.toString()));
+      }
+    });
+
+    on<newCatFetchTriviaEvent>((event, emit) async {
+      //clears the list to load new trivias with the new categories
+      triviaList.clear();
+
+      try {
+        if (triviaList.isEmpty) {
+          emit(loadingTriviaState());
+
+          //add the  dummy trivia before loading the view
+          triviaList.add(TriviaModel(
+              type: 'multiple',
+              difficulty: 'medium',
+              category: '9',
+              question: 'Loading the next Trivia',
+              correctAnswer: 'loading',
+              incorrectAnswers: ['loading', 'loading', 'loading', 'loading']));
+
+          //add the first trivia
+          newFetchedTrivia = await triviaRepo.fetchTrivia(
+              number: 1, cat: getRandomCategory().id, type: 'multiple');
+          triviaList.insert(triviaList.length - 1, newFetchedTrivia);
+
+          //emit a new state and display to the user
+          emit(loadedTriviaState(
+              triviaList: triviaList.toList(), pageIndex: event.pageIndex));
+
+          //fetch for the next trivia and insert before the dummy trivia
+          newFetchedTrivia = await triviaRepo.fetchTrivia(
+              number: 1, cat: getRandomCategory().id, type: 'multiple');
           triviaList.insert(triviaList.length - 1, newFetchedTrivia);
 
           emit(loadedTriviaState(

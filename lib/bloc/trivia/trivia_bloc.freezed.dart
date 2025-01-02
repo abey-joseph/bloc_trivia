@@ -20,32 +20,39 @@ mixin _$TriviaEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int pageIndex) fetchTriviaEvent,
+    required TResult Function(int pageIndex) newCatFetchTriviaEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int pageIndex)? fetchTriviaEvent,
+    TResult? Function(int pageIndex)? newCatFetchTriviaEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int pageIndex)? fetchTriviaEvent,
+    TResult Function(int pageIndex)? newCatFetchTriviaEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(fetchTriviaEvent value) fetchTriviaEvent,
+    required TResult Function(newCatFetchTriviaEvent value)
+        newCatFetchTriviaEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult? Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +172,7 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int pageIndex) fetchTriviaEvent,
+    required TResult Function(int pageIndex) newCatFetchTriviaEvent,
   }) {
     return fetchTriviaEvent(pageIndex);
   }
@@ -173,6 +181,7 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int pageIndex)? fetchTriviaEvent,
+    TResult? Function(int pageIndex)? newCatFetchTriviaEvent,
   }) {
     return fetchTriviaEvent?.call(pageIndex);
   }
@@ -181,6 +190,7 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int pageIndex)? fetchTriviaEvent,
+    TResult Function(int pageIndex)? newCatFetchTriviaEvent,
     required TResult orElse(),
   }) {
     if (fetchTriviaEvent != null) {
@@ -193,6 +203,8 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(fetchTriviaEvent value) fetchTriviaEvent,
+    required TResult Function(newCatFetchTriviaEvent value)
+        newCatFetchTriviaEvent,
   }) {
     return fetchTriviaEvent(this);
   }
@@ -201,6 +213,7 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult? Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
   }) {
     return fetchTriviaEvent?.call(this);
   }
@@ -209,6 +222,7 @@ class _$fetchTriviaEventImpl implements fetchTriviaEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
     required TResult orElse(),
   }) {
     if (fetchTriviaEvent != null) {
@@ -231,6 +245,156 @@ abstract class fetchTriviaEvent implements TriviaEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$fetchTriviaEventImplCopyWith<_$fetchTriviaEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$newCatFetchTriviaEventImplCopyWith<$Res>
+    implements $TriviaEventCopyWith<$Res> {
+  factory _$$newCatFetchTriviaEventImplCopyWith(
+          _$newCatFetchTriviaEventImpl value,
+          $Res Function(_$newCatFetchTriviaEventImpl) then) =
+      __$$newCatFetchTriviaEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int pageIndex});
+}
+
+/// @nodoc
+class __$$newCatFetchTriviaEventImplCopyWithImpl<$Res>
+    extends _$TriviaEventCopyWithImpl<$Res, _$newCatFetchTriviaEventImpl>
+    implements _$$newCatFetchTriviaEventImplCopyWith<$Res> {
+  __$$newCatFetchTriviaEventImplCopyWithImpl(
+      _$newCatFetchTriviaEventImpl _value,
+      $Res Function(_$newCatFetchTriviaEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pageIndex = null,
+  }) {
+    return _then(_$newCatFetchTriviaEventImpl(
+      pageIndex: null == pageIndex
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$newCatFetchTriviaEventImpl implements newCatFetchTriviaEvent {
+  const _$newCatFetchTriviaEventImpl({required this.pageIndex});
+
+  @override
+  final int pageIndex;
+
+  @override
+  String toString() {
+    return 'TriviaEvent.newCatFetchTriviaEvent(pageIndex: $pageIndex)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$newCatFetchTriviaEventImpl &&
+            (identical(other.pageIndex, pageIndex) ||
+                other.pageIndex == pageIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pageIndex);
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$newCatFetchTriviaEventImplCopyWith<_$newCatFetchTriviaEventImpl>
+      get copyWith => __$$newCatFetchTriviaEventImplCopyWithImpl<
+          _$newCatFetchTriviaEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int pageIndex) fetchTriviaEvent,
+    required TResult Function(int pageIndex) newCatFetchTriviaEvent,
+  }) {
+    return newCatFetchTriviaEvent(pageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int pageIndex)? fetchTriviaEvent,
+    TResult? Function(int pageIndex)? newCatFetchTriviaEvent,
+  }) {
+    return newCatFetchTriviaEvent?.call(pageIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int pageIndex)? fetchTriviaEvent,
+    TResult Function(int pageIndex)? newCatFetchTriviaEvent,
+    required TResult orElse(),
+  }) {
+    if (newCatFetchTriviaEvent != null) {
+      return newCatFetchTriviaEvent(pageIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(fetchTriviaEvent value) fetchTriviaEvent,
+    required TResult Function(newCatFetchTriviaEvent value)
+        newCatFetchTriviaEvent,
+  }) {
+    return newCatFetchTriviaEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult? Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
+  }) {
+    return newCatFetchTriviaEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(fetchTriviaEvent value)? fetchTriviaEvent,
+    TResult Function(newCatFetchTriviaEvent value)? newCatFetchTriviaEvent,
+    required TResult orElse(),
+  }) {
+    if (newCatFetchTriviaEvent != null) {
+      return newCatFetchTriviaEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class newCatFetchTriviaEvent implements TriviaEvent {
+  const factory newCatFetchTriviaEvent({required final int pageIndex}) =
+      _$newCatFetchTriviaEventImpl;
+
+  @override
+  int get pageIndex;
+
+  /// Create a copy of TriviaEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$newCatFetchTriviaEventImplCopyWith<_$newCatFetchTriviaEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

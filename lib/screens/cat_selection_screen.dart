@@ -1,4 +1,5 @@
 import 'package:bloc_weather/bloc/category/category_bloc.dart';
+import 'package:bloc_weather/bloc/trivia/trivia_bloc.dart';
 import 'package:bloc_weather/core/data_and_operation/constants/colors.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/cat_list.dart';
 import 'package:bloc_weather/core/data_and_operation/lists/fav_cat_list.dart';
@@ -17,6 +18,9 @@ class CatSelectionScreen extends StatelessWidget {
       listener: (context, state) {
         //log(state.toString());
         if (state is checkDone) {
+          //to fetch new trivia based on new cat
+          context.read<TriviaBloc>().add(newCatFetchTriviaEvent(pageIndex: 0));
+
           // Navigate to HomeScreen if the state is CheckDone
           Navigator.pushReplacement(
             context,
