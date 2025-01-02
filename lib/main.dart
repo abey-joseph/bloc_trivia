@@ -1,5 +1,6 @@
 import 'package:bloc_weather/bloc/category/category_bloc.dart';
 import 'package:bloc_weather/bloc/trivia/trivia_bloc.dart';
+import 'package:bloc_weather/bloc/validation/validation_bloc.dart';
 
 import 'package:bloc_weather/core/models/category/category.dart';
 import 'package:bloc_weather/screens/splash_screen.dart';
@@ -32,6 +33,9 @@ void main() async {
           triviaBloc.add(fetchTriviaEvent(pageIndex: 0));
           return triviaBloc;
         },
+      ),
+      BlocProvider<ValidationBloc>(
+        create: (context) => ValidationBloc(),
       ),
     ],
     child: MyTriviaApp(),

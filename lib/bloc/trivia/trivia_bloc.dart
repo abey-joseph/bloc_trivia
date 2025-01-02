@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:bloc_weather/core/repo/trivia_repo.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'trivia_event.dart';
@@ -13,6 +14,13 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
   final TriviaRepo triviaRepo =
       TriviaRepo(number: 1, cat: '9', type: 'multiple');
   final List<TriviaModel> triviaList = [];
+  TriviaModel newFetchedTrivia = TriviaModel(
+      type: 'multiple',
+      difficulty: 'medium',
+      category: '9',
+      question: 'dummy variable to store fetched trivia',
+      correctAnswer: 'test',
+      incorrectAnswers: ['test', 'test', 'test', 'test']);
 
   TriviaBloc() : super(initialTriviaState()) {
     on<fetchTriviaEvent>((event, emit) async {
@@ -30,15 +38,15 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
               category: '9',
               question: 'Loading the next Trivia',
               correctAnswer: 'loading',
-              incorrectAnswers: ['loading', 'loading', 'loading']));
+              incorrectAnswers: ['loading', 'loading', 'loading', 'loading']));
 
           //emit a new state and display to the user
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));
 
           //fetch for the next trivia and insert before the dummy trivia
-          triviaList.insert(
-              triviaList.length - 1, await triviaRepo.fetchTrivia());
+          newFetchedTrivia = await triviaRepo.fetchTrivia();
+          triviaList.insert(triviaList.length - 1, newFetchedTrivia);
 
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));
@@ -46,8 +54,9 @@ class TriviaBloc extends Bloc<TriviaEvent, TriviaState> {
           //if not fetching for the first time
 
           //fetch for the next trivia and insert before the dummy trivia
-          triviaList.insert(
-              triviaList.length - 1, await triviaRepo.fetchTrivia());
+
+          newFetchedTrivia = await triviaRepo.fetchTrivia();
+          triviaList.insert(triviaList.length - 1, newFetchedTrivia);
 
           emit(loadedTriviaState(
               triviaList: triviaList.toList(), pageIndex: event.pageIndex));

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc_weather/core/models/trivia/trivia.dart';
 import 'package:dio/dio.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class TriviaRepo {
   final int number;
@@ -42,7 +43,10 @@ class TriviaRepo {
           _isProcessing = false;
         });
 
-        return trivia;
+        //add the corect answer the incorrect andwers list and shuffle for the ease of use later
+        return getShuffledAnswers(trivia);
+
+        //
       } else if (response.statusCode == 429) {
         //if the errror is 429 it means need to wait 6 seconds before next call, so wait for 6 secons
         Future.delayed(Duration(milliseconds: 6000));
@@ -68,7 +72,8 @@ class TriviaRepo {
         });
 
         //returns the Trivia object
-        return trivia;
+        //add the corect answer the incorrect andwers list and shuffle for the ease of use later
+        return getShuffledAnswers(trivia);
 
         //
       } else {
@@ -77,5 +82,14 @@ class TriviaRepo {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  TriviaModel getShuffledAnswers(TriviaModel trivia) {
+    List<String> answers = List<String>.from(trivia.incorrectAnswers);
+    answers.add(trivia.correctAnswer);
+    answers.shuffle();
+    TriviaModel triviaWithShuffleAnsers =
+        trivia.copyWith(incorrectAnswers: answers);
+    return triviaWithShuffleAnsers;
   }
 }
